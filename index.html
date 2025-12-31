@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PahamCoding – Belajar Coding dari Nol</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    
+    
+    
+    :root {
+      --primary: #6366f1;
+      --secondary: #22d3ee;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --glass: rgba(255,255,255,0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f172a, #020617);
+      color: var(--light);
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 15px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+    }
+
+    nav h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--secondary);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--light);
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--secondary);
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    /* HERO */
+    header {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 8%;
+      text-align: center;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: var(--primary);
+      filter: blur(200px);
+      opacity: 0.4;
+      pointer-events: none; 
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      animation: fadeDown 1.2s ease;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: auto;
+      opacity: 0.85;
+      animation: fadeUp 1.2s ease;
+    }
+
+    .hero button {
+      margin-top: 40px;
+      padding: 15px 40px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .hero button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    /* SECTION */
+    section {
+      padding: 120px 8% 80px;
+    }
+
+    section h3 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    section p.desc {
+      text-align: center;
+      max-width: 700px;
+      margin: auto auto 60px;
+      opacity: 0.8;
+    }
+
+    /* CARD */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: var(--glass);
+      border-radius: 20px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.4s, box-shadow 0.4s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    }
+
+    .card h4 {
+      margin-bottom: 15px;
+      color: var(--secondary);
+    }
+
+    pre {
+      background: #020617;
+      padding: 15px;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-size: 0.9rem;
+      margin-top: 15px;
+    }
+
+    code {
+      color: #a5f3fc;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 40px 8%;
+      background: #020617;
+      opacity: 0.8;
+    }
+
+    /* ANIMATION */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* SCROLL REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 1s;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media(max-width:1024px){
+  nav{padding:15px 5%;}
+  section{padding:100px 6% 70px;}
+}
+
+@media(max-width:768px){
+  .hero h2{font-size:2rem;}
+  .hero p{font-size:0.95rem;}
+
+  nav ul{
+    position:absolute;
+    top:70px;
+    right:5%;
+    background:rgba(15,23,42,0.95);
+    flex-direction:column;
+    gap:20px;
+    padding:20px 30px;
+    border-radius:16px;
+    display:none;
+  }
+
+  nav ul.show{display:flex;}
+
+  nav .menu-btn{
+    display:block;
+    font-size:1.6rem;
+    cursor:pointer;
+  }
+}
+
+@media(max-width:480px){
+  .hero h2{font-size:1.7rem;}
+  section h3{font-size:1.6rem;}
+  .card{padding:22px;}
+}
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav aria-label="Navigasi utama">
+    <h1>PahamCoding</h1>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <ul>
+      <li><a href="#os">Sistem Operasi</a></li>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#cpp">C++</a></li>
+      <li><a href="#python">Python</a></li>
+      <li><a href="#html">HTML</a></li>
+      <li><a href="#css">CSS</a></li>
+      <li><a href="#js">JavaScript</a></li>
+      <li><a href="#about">Tentang</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home">
+    <div class="hero">
+      <h2>Belajar Coding dari Nol hingga Bisa 🚀</h2>
+      <p>
+        Website edukasi coding interaktif untuk pemula yang ingin memahami
+        bahasa pemrograman C++ dan Python dengan cara yang mudah, santai,
+        dan menyenangkan.
+      </p>
+      <button onclick="scrollToSection('cpp')">Mulai Belajar</button>
+    </div>
+  </header>
+
+  <!-- C++ SECTION -->
+  <section id="cpp" tabindex="-1">
+<h3>Bahasa C++ (Penjelasan Lengkap & Mudah Dipahami)</h3>
+<p><strong>C++</strong> adalah bahasa pemrograman tingkat menengah yang sangat cepat dan kuat. Bahasa ini sering digunakan untuk membuat sistem operasi, game, aplikasi desktop, dan software yang membutuhkan performa tinggi.</p>
+<p>Di bagian ini, setiap kode ditulis seperti gaya <em>pemula</em> dan disertai penjelasan baris per baris agar kamu benar-benar paham, bukan sekadar menyalin.</p>
+    <h3>Belajar Bahasa C++ (Lengkap dari Nol)</h3>
+    <p class="desc">C++ adalah bahasa pemrograman cepat dan kuat. Di sini kamu akan belajar C++ dari dasar logika sampai konsep lanjutan dengan gaya pemula.</p>
+
+    <div class="grid">
+      <div class="card"><h4>Apa itu Programming?</h4><p>Programming adalah proses memberi instruksi ke komputer agar melakukan sesuatu.</p></div>
+      <div class="card"><h4>Apa itu C++?</h4><p>C++ adalah bahasa pemrograman turunan C yang sangat cepat dan digunakan di industri besar.</p></div>
+
+      <div class="card"><h4>Hello World</h4><pre><code>#include <iostream>
+using namespace std;
+int main(){
+ cout << "Hello World";
+ return 0;
+}</code></pre><p><strong>Penjelasan:</strong></p><ul><li><code>#include &lt;iostream&gt;</code> → memasukkan library input/output</li><li><code>using namespace std;</code> → agar tidak perlu menulis <code>std::</code></li><li><code>int main()</code> → fungsi utama program</li><li><code>cout</code> → menampilkan teks ke layar</li><li><code>return 0;</code> → program selesai tanpa error</li></ul></div>
+
+      <div class="card"><h4>Komentar</h4><pre><code>// komentar satu baris
+/* komentar
+   banyak baris */</code></pre><p><strong>Penjelasan:</strong></p><ul><li><code>//</code> → komentar satu baris</li><li><code>/* */</code> → komentar lebih dari satu baris</li><li>Komentar tidak dieksekusi oleh program</li></ul></div>
+
+      <div class="card"><h4>Tipe Data</h4><pre><code>int angka = 10;
+float tinggi = 170.5;
+double berat = 60.2;
+bool aktif = true;</code></pre><p><strong>Penjelasan:</strong></p><ul><li><code>int</code> → bilangan bulat</li><li><code>float</code> → desimal sederhana</li><li><code>double</code> → desimal lebih akurat</li><li><code>bool</code> → true atau false</li></ul></div>
+
+      <div class="card"><h4>Operator</h4><pre><code>+  -  *  /  %
+== != > < >= <=</code></pre></div>
+
+      <div class="card"><h4>If Else</h4><pre><code>if(nilai >= 75){
+ cout << "Lulus";
+}else{
+ cout << "Tidak";
+}</code></pre><p><strong>Penjelasan:</strong></p><ul><li><code>if</code> → kondisi benar</li><li><code>else</code> → kondisi salah</li><li>Digunakan untuk pengambilan keputusan</li></ul></div>
+
+      <div class="card"><h4>Switch Case</h4><pre><code>int menu = 1;
+switch(menu){
+ case 1: cout<<"Start"; break;
+ case 2: cout<<"Exit"; break;
+}</code></pre></div>
+
+      <div class="card">
+  <h4>Loop For (Perulangan)</h4>
+  <p>Loop <strong>for</strong> digunakan untuk mengulang kode sebanyak jumlah tertentu. Biasanya dipakai saat kita sudah tahu berapa kali perulangan akan dilakukan.</p>
+  <pre><code>// Contoh loop for sederhana
+for(int i = 1; i <= 5; i++){
+  cout << i << endl;
+}</code></pre>
+  <p><strong>Penjelasan:</strong></p>
+  <ul>
+    <li><code>int i = 1</code> → nilai awal</li>
+    <li><code>i <= 5</code> → kondisi berhenti</li>
+    <li><code>i++</code> → penambahan nilai setiap loop</li>
+  </ul>
+</div>
+
+      <div class="card"><h4>Loop While</h4><pre><code>int i=1;
+while(i<=5){
+ cout<<i;
+ i++;
+}</code></pre></div>
+
+      <div class="card"><h4>Array</h4><pre><code>int angka[3] = {1,2,3};</code></pre></div>
+
+      <div class="card"><h4>Function</h4><pre><code>int tambah(int a,int b){
+ return a+b;
+}</code></pre></div>
+
+      <div class="card"><h4>Mini Project</h4><p>Membuat program kalkulator sederhana menggunakan if dan switch.</p></div>
+    </div>
+  </section>
+
+  <!-- PYTHON SECTION -->
+
+  <section id="python">
+<h3>Bahasa Python (Penjelasan Lengkap & Mudah Dipahami)</h3>
+<p><strong>Python</strong> adalah bahasa pemrograman yang sangat mudah dibaca oleh manusia. Cocok untuk pemula karena sintaksnya sederhana dan mirip bahasa sehari-hari.</p>
+<p>Python sering digunakan untuk data science, AI, web backend, automation, dan scripting sistem.</p>
+    <h3>Belajar Bahasa Python</h3>
+    <p class="desc">
+      Python adalah bahasa serbaguna yang digunakan untuk data science,
+      AI, web backend, automation, dan aplikasi sehari-hari.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h4>Program Pertama Python</h4>
+        <pre><code>print("Hello World dari Python")</code></pre>
+      </div>
+
+      <div class="card">
+        <h4>Variabel & Tipe Data</h4>
+        <pre><code>nama = "Andi"
+umur = 17
+tinggi = 170.5
+is_student = True</code></pre>
+      </div>
+
+      <div class="card">
+        <h4>Percabangan</h4>
+        <pre><code>nilai = 80
+
+if nilai >= 75:
+    print("Lulus")
+else:
+    print("Tidak Lulus")</code></pre>
+      </div>
+
+      <div class="card">
+        <h4>Perulangan</h4>
+        <pre><code>for i in range(1,6):
+    print(i)</code></pre>
+      </div>
+
+      <div class="card">
+        <h4>List</h4>
+        <pre><code>buah = ["apel", "jeruk", "mangga"]
+print(buah[0])</code></pre>
+      </div>
+
+      <div class="card">
+        <h4>Function</h4>
+        <pre><code>def sapa(nama):
+    print("Halo", nama)
+
+sapa("Budi")</code></pre>
+      </div>
+
+      <div class="card">
+        <h4>Mini Project: Tebak Angka</h4>
+        <pre><code>import random
+angka = random.randint(1,10)
+tebakan = int(input("Tebak angka: "))
+
+if tebakan == angka:
+    print("Benar!")
+else:
+    print("Salah")</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- HTML SECTION -->
+  <section id="html">
+<h3>HTML (Struktur Website)</h3>
+<p><strong>HTML</strong> adalah fondasi dari sebuah website. HTML digunakan untuk membuat struktur seperti judul, paragraf, tombol, gambar, dan link.</p>
+<p>Anggap HTML seperti <em>rangka tubuh</em> manusia. Tanpa HTML, website tidak akan memiliki bentuk.</p>
+    <h3>Belajar HTML (Struktur Web)</h3>
+    <p class="desc">HTML membangun kerangka website dari teks hingga form.</p>
+    <div class="grid">
+      <div class="card">
+        <h4>Tag Dasar</h4>
+        <pre><code>&lt;h1&gt;Judul&lt;/h1&gt;
+&lt;p&gt;Paragraf&lt;/p&gt;
+&lt;a href="#"&gt;Link&lt;/a&gt;</code></pre>
+      </div>
+      <div class="card">
+        <h4>Gambar & List</h4>
+        <pre><code>&lt;img src="foto.jpg" /&gt;
+&lt;ul&gt;
+ &lt;li&gt;Item&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+      </div>
+      <div class="card">
+        <h4>Form</h4>
+        <pre><code>&lt;form&gt;
+ &lt;input type="text" placeholder="Nama"&gt;
+ &lt;button&gt;Kirim&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+      </div>
+      <div class="card">
+        <h4>Semantic HTML</h4>
+        <pre><code>&lt;header&gt;&lt;/header&gt;
+&lt;nav&gt;&lt;/nav&gt;
+&lt;section&gt;&lt;/section&gt;
+&lt;footer&gt;&lt;/footer&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- CSS SECTION -->
+  <section id="css">
+<h3>CSS (Tampilan & Desain)</h3>
+<p><strong>CSS</strong> digunakan untuk mempercantik tampilan HTML. Dengan CSS, kita bisa mengatur warna, ukuran teks, layout, animasi, dan responsivitas.</p>
+<p>Jika HTML adalah rangka tubuh, maka CSS adalah pakaian dan gaya.</p>
+    <h3>Belajar CSS (Desain & Animasi)</h3>
+    <p class="desc">CSS membuat website menjadi cantik, rapi, dan modern.</p>
+    <div class="grid">
+      <div class="card">
+        <h4>Warna & Font</h4>
+        <pre><code>body {
+ color: white;
+ background: black;
+ font-family: Arial;
+}</code></pre>
+      </div>
+      <div class="card">
+        <h4>Flexbox</h4>
+        <pre><code>.container {
+ display: flex;
+ justify-content: center;
+}</code></pre>
+      </div>
+      <div class="card">
+        <h4>Grid</h4>
+        <pre><code>.grid {
+ display: grid;
+ grid-template-columns: repeat(3,1fr);
+}</code></pre>
+      </div>
+      <div class="card">
+        <h4>Hover Effect</h4>
+        <pre><code>button:hover {
+ transform: scale(1.1);
+}</code></pre>
+      </div>
+      <div class="card">
+        <h4>Animation</h4>
+        <pre><code>@keyframes fade {
+ from{opacity:0}
+ to{opacity:1}
+}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- JAVASCRIPT SECTION -->
+  <section id="js">
+<h3>JavaScript (Interaksi & Logika)</h3>
+<p><strong>JavaScript</strong> membuat website menjadi hidup. Dengan JavaScript, tombol bisa diklik, data bisa diproses, dan animasi bisa bereaksi terhadap pengguna.</p>
+<p>JavaScript adalah <em>otak</em> dari website.</p>
+    <h3>Belajar JavaScript (Logika & Interaksi)</h3>
+    <p class="desc">JavaScript memberi otak pada website.</p>
+    <div class="grid">
+      <div class="card">
+        <h4>Variabel</h4>
+        <pre><code>let angka = 10;
+const nama = "Budi";</code></pre>
+      </div>
+      <div class="card">
+        <h4>If Else</h4>
+        <pre><code>if(angka > 5){
+ alert("Besar");
+}</code></pre>
+      </div>
+      <div class="card">
+        <h4>Loop</h4>
+        <pre><code>for(let i=1;i<=5;i++){
+ console.log(i);
+}</code></pre>
+      </div>
+      <div class="card">
+        <h4>DOM</h4>
+        <pre><code>document.querySelector("h1").innerText = "Halo";</code></pre>
+      </div>
+      <div class="card">
+        <h4>Event</h4>
+        <pre><code>button.onclick = function(){
+ alert("Klik!");
+}</code></pre>
+      </div>
+      <div class="card">
+        <h4>Mini Project: Counter</h4>
+        <pre><code>let count = 0;
+function tambah(){
+ count++;
+ console.log(count);
+}</code></pre>
+      </div>
+    </div>
+  </section>
+
+    <!-- EXTRA MATERIAL SECTION -->
+  <section id="extra" class="reveal">
+    <h3>Materi Tambahan Super Lengkap (Level Lanjut Pemula)</h3>
+    <p class="desc">Bagian ini memperdalam semua bahasa agar kamu benar-benar paham konsep dunia nyata.</p>
+
+    <div class="grid">
+      <!-- PYTHON ADVANCED -->
+      <div class="card"><h4>Python: String</h4><pre><code>text = "Belajar Python"
+print(text.upper())
+print(text.lower())</code></pre></div>
+
+      <div class="card"><h4>Python: Dictionary</h4><pre><code>data = {"nama":"Ani", "umur":18}
+print(data["nama"])</code></pre></div>
+
+      <div class="card"><h4>Python: While Loop</h4><pre><code>i = 1
+while i <= 5:
+    print(i)
+    i += 1</code></pre></div>
+
+      <div class="card"><h4>Python: Error Handling</h4><pre><code>try:
+    x = int(input())
+except:
+    print("Error input")</code></pre></div>
+
+      <div class="card"><h4>Python Mini Project</h4><p>Membuat program kasir sederhana (input, total, dan output).</p></div>
+
+      <!-- HTML ADVANCED -->
+      <div class="card"><h4>HTML: Table</h4><pre><code>&lt;table&gt;
+ &lt;tr&gt;&lt;th&gt;Nama&lt;/th&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;Ani&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</code></pre></div>
+
+      <div class="card"><h4>HTML: Input Type</h4><pre><code>&lt;input type="email"&gt;
+&lt;input type="password"&gt;</code></pre></div>
+
+      <div class="card"><h4>HTML: SEO Dasar</h4><p>Menggunakan tag &lt;title&gt;, &lt;meta description&gt; agar website mudah ditemukan.</p></div>
+
+      <!-- CSS ADVANCED -->
+      <div class="card"><h4>CSS: Box Model</h4><pre><code>div {
+ margin:10px;
+ padding:20px;
+}</code></pre></div>
+
+      <div class="card"><h4>CSS: Position</h4><pre><code>.box{
+ position: absolute;
+ top: 10px;
+}</code></pre></div>
+
+      <div class="card"><h4>CSS: Transition</h4><pre><code>button{
+ transition: 0.3s;
+}</code></pre></div>
+
+      <!-- JAVASCRIPT ADVANCED -->
+      <div class="card"><h4>JS: Function</h4><pre><code>function sapa(nama){
+ alert(nama);
+}</code></pre></div>
+
+      <div class="card"><h4>JS: Event Listener</h4><pre><code>btn.addEventListener("click", function(){
+ alert("Klik");
+});</code></pre></div>
+
+      <div class="card"><h4>JS: Mini Game</h4><p>Membuat game tebak angka versi web.</p></div>
+
+      <!-- LOGIC -->
+      <div class="card"><h4>Logika Algoritma</h4><p>Belajar berpikir runtut, kondisi, dan solusi.</p></div>
+
+      <div class="card"><h4>Tips Belajar Coding</h4><ul><li>Latihan setiap hari</li><li>Jangan takut error</li><li>Baca kode orang lain</li></ul></div>
+    </div>
+  </section>
+
+  <!-- SISTEM OPERASI -->
+  <section id="os">
+<h3>Sistem Operasi (Pemahaman Dasar)</h3>
+<p><strong>Sistem Operasi</strong> adalah penghubung antara hardware (CPU, RAM, Disk) dan software (program).</p>
+<p>Tanpa sistem operasi, program tidak bisa berjalan.</p>
+<p>Contoh sistem operasi: Windows, Linux, macOS.</p>
+<ul>
+<li>CPU → menjalankan instruksi</li>
+<li>RAM → menyimpan data sementara</li>
+<li>Storage → menyimpan data permanen</li>
+</ul>
+    <h3>Dasar Sistem Operasi (Wajib Programmer)</h3>
+    <p class="desc">Materi ini menjelaskan bagaimana komputer bekerja di balik layar. Sangat penting untuk semua programmer.</p>
+    <div class="grid">
+      <div class="card"><h4>Apa itu Sistem Operasi?</h4><p>Sistem Operasi (OS) adalah penghubung antara hardware dan software.</p></div>
+      <div class="card"><h4>Contoh OS</h4><p>Windows, Linux, macOS, Android.</p></div>
+      <div class="card"><h4>Kernel</h4><p>Kernel adalah inti OS yang mengatur CPU, RAM, dan device.</p></div>
+      <div class="card"><h4>Process</h4><p>Program yang sedang berjalan.</p></div>
+      <div class="card"><h4>Thread</h4><p>Unit kecil dari process, lebih ringan.</p></div>
+      <div class="card"><h4>Memory Management</h4><p>Mengatur penggunaan RAM agar efisien.</p></div>
+      <div class="card"><h4>File System</h4><p>Cara OS menyimpan data. Contoh: ext4, NTFS.</p></div>
+      <div class="card"><h4>CLI vs GUI</h4><p>CLI berbasis teks, GUI berbasis visual.</p></div>
+      <div class="card"><h4>Linux untuk Programmer</h4><p>Linux stabil, open source, dan sangat populer di server.</p></div>
+      <div class="card"><h4>Command Dasar Linux</h4><pre><code>ls
+cd
+pwd
+mkdir
+rm</code></pre></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="reveal">
+    <h3>Tentang Website Ini</h3>
+    <p class="desc">
+      Website ini dibuat untuk membantu pemula memahami dunia coding
+      dengan tampilan modern, animasi halus, dan materi bertahap.
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 PahamCoding | Platform Edukasi Coding untuk Pemula</p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    function toggleMenu(){
+      document.querySelector('nav ul').classList.toggle('show');
+    }
+
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    window.addEventListener('scroll', () => {
+      const reveals = document.querySelectorAll('.reveal');
+      reveals.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < window.innerHeight - 100) {
+          el.classList.add('active');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
